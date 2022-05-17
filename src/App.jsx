@@ -11,12 +11,12 @@ function App() {
   const [message, setMessage] = useState("")
   const [memos, setMemos] = useState([])
 
-  const onNameChange = (event) => {
-    setName(event.target.value)
+  const onNameChange = (e) => {
+    setName(e.target.value)
   }
 
-  const onMsgChange = (event) => {
-    setMessage(event.target.value)
+  const onMsgChange = (e) => {
+    setMessage(e.target.value)
   }
 
   const isWalletConnected = async () => {
@@ -37,11 +37,11 @@ function App() {
 
   const connectWallet = async () => {
     try {
-      const { ethereum } = window
-      if (!ethereum) {
+      // const { ethereum } = window
+      if (!window.ethereum) {
         console.log("pls install MetaMask")
       }
-      const accounts = await ethereum.request({ method: "eth_requestAccounts" })
+      const accounts = await window.ethereum.request({ method: "eth_requestAccounts" })
       setCurrentAccount(accounts[0])
     } catch (err) {
       console.log("error:", err)
